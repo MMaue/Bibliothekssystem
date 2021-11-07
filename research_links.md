@@ -12,6 +12,7 @@
 - https://www.youtube.com/watch?v=cYWiDiIUxQc
 - https://www.youtube.com/watch?v=2e4STDACVA8&list=PLCC34OHNcOtqJBOLjXTd5xC0e-VD3siPn
 - https://www.youtube.com/watch?v=dam0GPOAvVI
+- https://www.youtube.com/playlist?list=PLNmsVeXQZj7otfP2zTa8AIiNIWVg0BRqs
 
 # django vs flask
 - https://www.youtube.com/watch?v=EGYpNQ3GL1Y
