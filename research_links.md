@@ -35,6 +35,7 @@
 - https://www.youtube.com/watch?v=ytqQzHPVv_4
 - https://www.youtube.com/watch?v=_t9iLQXgQhk
 - https://www.youtube.com/watch?v=ZdP0KM49IVk
+- https://www.youtube.com/watch?v=N_S7_wg87GU
 
 # php python
 - https://www.youtube.com/watch?v=zpucPsB8Dtc
