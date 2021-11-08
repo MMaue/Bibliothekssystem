@@ -20,7 +20,8 @@ session_start();
 			//save to database
 			$query = "insert into leser (vorname, name, geburtsdatum, mail, mahnungen, pwhash) values ('$user_name', 'name', '2003-06-14', 'mail@gmail.com', '0', '$pwhash')";
 
-			mysqli_query($con, $query);
+			// mysqli_query($con, $query);
+			$con->query($query);
 
 			header("Location: login.php");
 			die;

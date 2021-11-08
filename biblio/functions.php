@@ -9,7 +9,8 @@ function check_login($con)
 		$id = $_SESSION['user_id'];
 		$query = "select * from leser where id = '$id' limit 1";
 
-		$result = mysqli_query($con,$query);
+		// $result = mysqli_query($con,$query);
+		$result = $con->query($query);
 		if($result && mysqli_num_rows($result) > 0)
 		{
 
@@ -19,7 +20,7 @@ function check_login($con)
 	}
 
 	//redirect to login
-	header("Location: login.php");
+	//header("Location: login.php");
 	die;
 
 }

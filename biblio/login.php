@@ -18,7 +18,8 @@ session_start();
 
 			//read from database
 			$query = "select * from leser where vorname = '$user_name' limit 1";
-			$result = mysqli_query($con, $query);
+			// $result = mysqli_query($con, $query);
+			$result = $con->query($query);
 			print_r($result);
 			echo "---".mysqli_num_rows($result)."---";
 			if(mysqli_num_rows($result) > 0)

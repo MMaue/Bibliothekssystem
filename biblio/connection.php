@@ -5,8 +5,8 @@ $dbuser = "root";
 $dbpass = "";
 $dbname = "bibliothekssystem";
 
-if(!$con = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname))
-{
-
-	die("failed to connect!");
+$con = new mysqli($dbhost,$dbuser,$dbpass,$dbname);
+if($con->connect_error){
+	die("failed to connect! --- ".$con->connect_error);
 }
+echo "connected";
