@@ -36,6 +36,9 @@
 - https://www.youtube.com/watch?v=_t9iLQXgQhk
 - https://www.youtube.com/watch?v=ZdP0KM49IVk
 - https://www.youtube.com/watch?v=N_S7_wg87GU
+- https://www.php.net/manual/de/book.mysqli.php
+- https://www.php.net/manual/de/mysqli.query.php
+- https://www.php.net/manual/de/function.mysqli-connect.php
 
 # php python
 - https://www.youtube.com/watch?v=zpucPsB8Dtc
