@@ -42,7 +42,7 @@ session_start();
     </div>
 </header>
 	<a href="logout.php">Logout</a>
-	<h1>Bibliotehkssystem</h1>
+	<h1>Bibliothekssystem</h1>
 	<br>
 	Hello <?php echo $user_data['user_name']; ?>
 </body>

@@ -4,30 +4,38 @@ session_start();
 	include("connection.php");
 	include("functions.php");
 
-
-	if($_SERVER['REQUEST_METHOD'] == "POST")
-	{
+	if($_SERVER['REQUEST_METHOD'] == "POST") {
 		//something was posted
-		$user_name = $_POST['user_name'];
+		$user_name = $_POST['user_name']; // schlecht bitte überarbeiten
 		$password = $_POST['password'];
 		//create the pwhash using sha256
 		$command = escapeshellcmd("create_hash.py $password");
         $pwhash = shell_exec($command);
-
-		if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
-		{
-
+		if(!empty($user_name) && !empty($password) && !is_numeric($user_name)) {
 			//save to database
 			$query = "insert into leser (vorname, name, geburtsdatum, mail, mahnungen, pwhash) values ('$user_name', 'name', '2003-06-14', 'mail@gmail.com', '0', '$pwhash')";
-
 			// mysqli_query($con, $query);
 			$con->query($query);
-
 			header("Location: login.php");
 			die;
-		}else
-		{
+		}else {
 			echo "Please enter some valid information!";
+		}
+	}
+?>
+
+<?php // htmlspecialchars(stripslashes(trim())) to prevent Cross Site Scripting in forms --> get_post_var($var)
+	$error = "";
+	if($_SERVER['REQUEST_METHOD'] == "POST") {
+		if (empty(get_post_var("user_name"))) {
+			$error = "Bitte Name eintragen.";
+		}
+		elseif (!filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)) {
+			$error = "Üngültige Email";
+		}
+		else {
+		echo "Hallo ".get_post_var("user_name").
+		"<br>Das Passwort lautet ".get_post_var("password");	
 		}
 	}
 ?>
@@ -63,16 +71,13 @@ session_start();
 </header>
 <body>
 	<div id="box">
-		
-		<form method="post">
-			<div style="font-size: 20px;margin: 10px;color: white;">Signup</div>
-
-			<input id="text" type="text" name="user_name"><br><br>
-			<input id="text" type="password" name="password"><br><br>
-
-			<input id="button" type="submit" value="Signup"><br><br>
-
-			<a href="login.php">Click to Login</a><br><br>
+		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+			<div style="font-size: 20px;margin: 10px;color: white;">Registrieren</div>
+			Name: <input id="text" type="text" name="user_name"><br><br>
+			Passwort: <input id="text" type="password" name="password"><br><br>
+			<input id="button" type="submit" value="Einloggen"><br><br>
+			<?php echo $error; ?><br><br>
+			<a href="login.php">Einloggen</a><br><br>
 		</form>
 	</div>
 </body>

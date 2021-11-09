@@ -37,7 +37,7 @@
         </table>
     </div>
 </header>
-	<h1>Bibliotehkssystem - Verliehen</h1>
+	<h1>Bibliothekssystem - Verliehen</h1>
 	<br>
     
 </body>

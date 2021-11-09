@@ -1,10 +1,41 @@
 body {
-	background-color: rgb(28, 36, 51); 
-	color: rgb(122, 122, 122);
-	font-size: small;
-	font-family: Verdana, Arial, sans-serif;
+    background-color: rgb(28, 36, 51);
+    color: rgb(150, 150, 150);
+    font-size: 100%;
+    font-family: Verdana, Arial, sans-serif;
 }
 
 header {
-	background-color:rgb(0, 0, 0)
+    background-color: rgb(18, 18, 22)
+}
+
+table.farbig {
+    table-layout: auto;
+    font-size: 0.9em;
+    color: rgb(0, 0, 0);
+}
+
+table.farbig th {
+    border-left: 1px solid rgb(0, 0, 0);
+    color: rgb(241, 253, 255);
+    background-color: rgb(26, 69, 109);
+}
+
+table.farbig td {
+    border-left: 1px solid rgb(0, 0, 0);
+}
+
+table.farbig tr.even {
+    background-color: rgb(230, 240, 240);
+}
+
+table.farbig tr.odd {
+    background-color: rgb(184, 208, 252);
+}
+
+#SQLText {
+    font-family: PTMono;
+    max-width: 100%;
+    height: 10em;
+    width: 80em;
 }

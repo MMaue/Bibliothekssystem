@@ -37,7 +37,7 @@
         </table>
     </div>
 </header>
-	<h1>Bibliotehkssystem - Search</h1>
+	<h1>Bibliothekssystem - Search</h1>
 	<br>
     
 </body>

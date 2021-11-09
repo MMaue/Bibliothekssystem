@@ -1,67 +1,58 @@
 body {
-	background-color: rgb(28, 36, 51); 
-	color: rgb(122, 122, 122);
-	font-size: small;
-	font-family: Verdana, Arial, sans-serif;
+    background-color: rgb(28, 36, 51);
+    color: rgb(122, 122, 122);
+    font-size: small;
+    font-family: Verdana, Arial, sans-serif;
 }
 
 header {
-	background-color:rgb(0, 0, 0)
+    background-color: rgb(0, 0, 0)
 }
+
 
 /* ---------------------------------------------------- */
 
 article {
-    line-height:1.25em;
+    line-height: 1.25em;
     padding-top: 1em;
-  } 
-  
-  table.farbig {
-    table-layout:auto;
-    font-size: 0.75em;
-  }
-  
-  table.farbig  th {
-      border-left: 1px solid #000;
-      color: rgb(0, 0, 0);
-      background-color: rgb(41, 163, 184);
-      padding-top: 0;
-      padding-bottom: 0;
-      padding-left: 2px;
-      padding-right: 2px;
-  }
-  
-  table.farbig  td {
-      border-left: 1px solid #000;
-      padding-top: 0;
-      padding-bottom: 0;
-      padding-left: 2px;
-      padding-right: 2px;
-  }
-  
-  table.farbig tr.even a, table.farbig tr.odd a
-  {
-    background-color: rgb(120, 159, 182);
-    color: rgb(33, 40, 48);
-  }
+}
 
-  table.farbig tr.even
-  {
-    background-color: rgb(211, 208, 197);
-    color: rgb(0, 0, 0);
-  }
-  
-  table.farbig tr.odd
-  {
-    background-color: rgb(179, 179, 179);
-    color: rgb(0, 0, 0);
-  }
-  
-  #SQLText {
-  font-family: PTMono;
-  max-width:100%;
-  height: 10em;
-  width: 80em;
-  }
-  
-  
+table.farbig {
+    table-layout: auto;
+    font-size: 0.75em;
+}
+
+table.farbig th {
+    font-size: 200%;
+    border-left: 1px solid #000;
+    color: rgb(41, 163, 184);
+    background-color: rgb(0, 0, 0);
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+table.farbig td {
+    border-left: 1px solid #000;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+table.farbig tr.even {
+    background-color: rgb(12, 12, 12);
+    color: rgb(165, 198, 235);
+}
+
+table.farbig tr.odd {
+    background-color: rgb(22, 29, 39);
+    color: rgb(165, 198, 235);
+}
+
+#SQLText {
+    font-family: PTMono;
+    font-size: 150%;
+    max-width: 100%;
+}

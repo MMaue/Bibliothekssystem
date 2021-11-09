@@ -3,13 +3,14 @@
 session_start();
 
 	include("connection.php");
+	include("functions.php");
 
 ?>
 
 <!DOCTYPE html>
 <html lang="de">
 	<meta charset="utf-8">
-	<link href='style_inf.css' rel='stylesheet' type='text/css'>
+	<link href='style.css' rel='stylesheet' type='text/css'>
 <head>
 	<title>Bibliothek</title>
 </head>
@@ -54,57 +55,26 @@ function click( id ) {
         </table>
     </div>
 </header>
-	<h1>Bibliotehkssystem - SQL</h1>
+	<h1>Bibliothekssystem - SQL</h1>
 
     <p><a href="javascript:click('schema');">Datenbankschema ein-/ausblenden</a></a>
-    <div style="display:none;" id="schema"><img src="biblioschema.png" alt="Datenbankschema"  width="75%" height="75%"/></div>
+    <div style="display:none;" id="schema"><img src="biblioschema.png" alt="Datenbankschema"  width="60%" height="60%"/></div>
 
-<form method="post">
+<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
 <textarea id="SQLText" name="sqlfeld" cols="120" rows="10" spellcheck="false" style=" background:#3c5064; color: #000000;">
 SELECT * FROM buch
 </textarea>
 <p><input type="submit" value="Abschicken"></p>
 </form>
-<br></br>
 
 <table class="farbig"><tbody>
 <?php
-if($_SERVER['REQUEST_METHOD'] == "POST")
-{
+// execute any SQL query from the textarea
+if($_SERVER['REQUEST_METHOD'] == "POST") {
 	//read from database
 	$query = $_POST['sqlfeld'];
 	$result = $con->query($query);
-	if($result->num_rows > 0){
-		echo "Anzahl der Einträge: ".$result->num_rows.PHP_EOL;
-		$n = 0;
-		while($row = $result->fetch_assoc()){
-			if ($n == 0){
-				echo "<tr>".PHP_EOL;
-				foreach (array_keys($row) as $key){
-					echo "<th>".$key."</th>".PHP_EOL;
-				}
-				echo "</tr>".PHP_EOL;
-			}
-			if ($n % 2 == 0){
-				echo "<tr class=\"even\">".PHP_EOL;
-				foreach ($row as $field) {
-					echo "<td>".$field."</td>".PHP_EOL;
-				}
-				echo "</tr>".PHP_EOL;
-			}
-			else {
-				echo "<tr class=\"odd\">".PHP_EOL;
-				foreach ($row as $field) {
-					echo "<td>".$field."</td>".PHP_EOL;
-				}
-				echo "</tr>".PHP_EOL;
-			}
-			$n += 1;
-		}
-	}
-	else {
-		echo "Fehler ".$con->error;
-	}
+	create_table($result);
 }
 ?>
 </tbody></table>
