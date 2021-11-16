@@ -56,7 +56,7 @@ session_start();
         </table>
     </div>
 </header>
-	<h1>Bibliothekssystem - Create New User</h1>
+	<h1>Bibliothekssystem - Leser hinzufügen</h1>
 
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 	<div style="font-size: 20px;margin: 10px;color: white;">Nutzerdaten eintragen</div>
