@@ -40,6 +40,12 @@
 - https://www.php.net/manual/de/mysqli.query.php
 - https://www.php.net/manual/de/function.mysqli-connect.php
 - https://www.youtube.com/watch?v=fJRKomvlRq8&list=PLNmsVeXQZj7rZMP1lj32Qyp4bkarvzCGm&index=10
+- https://www.php.net/manual/de/images/2a34c7f2e658f6ae74f3869f2aa5886f-crypt-text-rendered.svg
+- https://www.youtube.com/watch?v=KiypYcB6NZ8
+- https://www.youtube.com/watch?v=Qq96ZgiY1dY
+- https://thehavok.com/wp-content/uploads/2020/11/for_engineers.064-1-1024x576.jpeg
+- https://www.php.net/manual/de/faq.passwords.php
+- https://www.php.net/manual/de/function.password-hash.php
 
 # php python
 - https://www.youtube.com/watch?v=zpucPsB8Dtc
