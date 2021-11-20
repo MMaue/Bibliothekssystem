@@ -47,6 +47,8 @@
 - https://www.php.net/manual/de/faq.passwords.php
 - https://www.php.net/manual/de/function.password-hash.php
 - https://www.php.net/manual/en/function.scandir.php
+- https://www.php.net/manual/de/language.exceptions.php
+- https://www.php.net/manual/de/function.error-reporting.php
 
 # php python
 - https://www.youtube.com/watch?v=zpucPsB8Dtc
