@@ -6,7 +6,7 @@ body {
 }
 
 header {
-    background-color: rgb(18, 18, 22)
+    background-color: rgb(18, 18, 22);
 }
 
 table.farbig {
@@ -33,9 +33,10 @@ table.farbig tr.odd {
     background-color: rgb(184, 208, 252);
 }
 
-#SQLText {
+textarea.sqlquery {
+    font-size: 130%;
     font-family: PTMono;
-    max-width: 100%;
+    max-width: 80%;
     height: 10em;
     width: 80em;
 }
