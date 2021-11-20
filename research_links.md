@@ -1,4 +1,4 @@
-# standard library
+# python
 - https://docs.python.org/3/library/
 - https://docs.python.org/3/library/http.html
 - https://docs.python.org/3/library/http.client.html
@@ -8,23 +8,23 @@
 - https://www.youtube.com/watch?v=hFNZ6kdBgO0
 - https://github.com/howCodeORG/Simple-Python-Web-Server/blob/master/serv.py
 
-# flask
+# python flask
 - https://www.youtube.com/watch?v=cYWiDiIUxQc
 - https://www.youtube.com/watch?v=2e4STDACVA8&list=PLCC34OHNcOtqJBOLjXTd5xC0e-VD3siPn
 - https://www.youtube.com/watch?v=dam0GPOAvVI
 - https://www.youtube.com/playlist?list=PLNmsVeXQZj7otfP2zTa8AIiNIWVg0BRqs
 
-# django vs flask
+# python django vs flask
 - https://www.youtube.com/watch?v=EGYpNQ3GL1Y
 - https://www.youtube.com/watch?v=NwKB4HZnIHM
 
-# pyodbc
+# python pyodbc
 - https://www.youtube.com/watch?v=qOyDrR3h5uI
 
-# mysql.connector
+# python mysql.connector
 - https://github.com/MMaue/SQL-Viewer
 
-# plotly table
+# python plotly table
 - https://www.youtube.com/watch?v=USTqY4gH_VM
 - https://github.com/Coding-with-Adam/Dash-by-Plotly/blob/master/DataTable/datatable_intro_and_sort.py
 
@@ -46,6 +46,7 @@
 - https://thehavok.com/wp-content/uploads/2020/11/for_engineers.064-1-1024x576.jpeg
 - https://www.php.net/manual/de/faq.passwords.php
 - https://www.php.net/manual/de/function.password-hash.php
+- https://www.php.net/manual/en/function.scandir.php
 
 # php python
 - https://www.youtube.com/watch?v=zpucPsB8Dtc
@@ -60,4 +61,5 @@
 - https://www.youtube.com/watch?v=WYufSGgaCZ8
 - https://drive.google.com/file/d/15ZrwKt7D891-5V3tzNH8XzOTA7cfFQPH/view
 - https://www.youtube.com/c/TechWithTim/search?query=database
-
+- https://de.wikipedia.org/wiki/Datei:Green_tick.svg
+- https://de.wikipedia.org/wiki/Datei:Red_x.svg
