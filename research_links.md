@@ -60,6 +60,11 @@
 - https://www.youtube.com/watch?v=Bx_BEA8VPq0
 - https://www.youtube.com/watch?v=s6Xi7x4G7yg
 
+# sql
+- https://www.w3schools.com/sql/sql_exists.asp
+- https://www.w3schools.com/sql/sql_ref_mysql.asp
+- https://www.w3schools.com/sql/sql_quickref.asp
+
 # other
 - https://www.youtube.com/watch?v=arqv2YVp_3E
 - https://www.youtube.com/watch?v=WYufSGgaCZ8
