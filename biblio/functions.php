@@ -39,7 +39,6 @@ function create_header($path) {
 	echo "<header role=\"banner\">
 	<div >
 	<table class=\"links\" border=\"0\"><tbody>
-	<tr>$connection</tr>
 	<tr>
 	<th><a href=\"https://github.com/MMaue/Bibliothekssystem\" aria-label=\"Source Code\">
 	<svg height=\"32\" aria-hidden=\"true\" viewBox=\"0 0 16 16\" version=\"1.1\" width=\"32\" data-view-component=\"true\" class=\"octicon octicon-mark-github v-align-middle\">

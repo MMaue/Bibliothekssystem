@@ -8,7 +8,7 @@ $dbuser = "root";
 $dbpass = "";
 $dbname = "bibliothekssystem";
 
-error_reporting(0);
+//error_reporting(0);
 
 $con = new mysqli($dbhost,$dbuser,$dbpass,$dbname);
 if($con->connect_error){

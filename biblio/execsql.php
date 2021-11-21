@@ -33,7 +33,7 @@ function click( id ) {
 	<h1>SQL</h1>
 
     <p><a href="javascript:click('schema');">Datenbankschema ein-/ausblenden</a></a>
-    <div style="display:none;" id="schema"><img src="biblioschema.png" alt="Datenbankschema"  width="60%" height="60%"/></div>
+    <div style="display:none;" id="schema"><img src="biblioschema.png" alt="Datenbankschema"  width="70%" height="60%"/></div>
 
 <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
 <textarea id="SQLText" class="sqlquery" name="sqlfeld" cols="120" rows="10" spellcheck="false" style=" background:#3c5064; color: #000000;">

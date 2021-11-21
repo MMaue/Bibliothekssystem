@@ -5,57 +5,6 @@ session_start();
 	include("connection.php");
 	include("functions.php");
 
-    if($_SERVER['REQUEST_METHOD'] == "POST") {
-        $query = $con->prepare("SELECT name 
-        FROM autor
-        WHERE name = ?
-        LIMIT 1");
-        $query->bind_param('s', $_POST["autor"]);
-        $query->execute();
-        $query->bind_result($autor);
-        $res = $query->fetch();
-        if ($res < 0) { // wenn autor nicht vorhanden -> hinzufügen
-            $query->close();
-            $query = $con->prepare("INSERT INTO autor (name) VALUES(?)");
-            $query->bind_param('s', $_POST["autor"]);
-            $query->execute();
-        }
-        $query->close();
-        $query = $con->prepare("SELECT name 
-        FROM verlag
-        WHERE name = ?
-        LIMIT 1");
-        $query->bind_param('s', $_POST["verlag"]);
-        $query->execute();
-        $query->bind_result($verlag);
-        $res = $query->fetch();
-        if ($res < 0) { // wenn verlag nicht vorhanden -> hinzufügen
-            $query->close();
-            $query = $con->prepare("INSERT INTO verlag (name) VALUES(?)");
-            $query->bind_param('s', $_POST["verlag"]);
-            $query->execute();
-        }
-
-        $query->close();
-        $query = $con->prepare("SELECT ANR FROM autor WHERE name = ? LIMIT 1");
-        $query->bind_param('s', $_POST["autor"]);
-        $query->execute();
-        $query->bind_result($anr);
-
-        $query->close();
-        $query = $con->prepare("SELECT VNR FROM verlag WHERE name = ? LIMIT 1");
-        $query->bind_param('s', $_POST["verlag"]);
-        $query->execute();
-        $query->bind_result($vnr);
-
-        $query->close();
-        $query = $con->prepare("INSERT INTO buch (ANR, titel, VNR, jahr, ort, isbn, sachgebiet) VALUES(?, ?, ?, ?, ?, ?, ?)");
-        $query->bind_param('sssssss', $anr, $_POST["titel"], $VNR, $_POST["jahr"], $_POST["ort"], $_POST["isbn"], $_POST["sachgebiet"]);
-        $query->execute();
-
-        $query->close();
-    }
-    
 ?>
 
 <!DOCTYPE html>
@@ -88,10 +37,189 @@ session_start();
 <table class="farbig"><tbody>
 <?php
 if($_SERVER['REQUEST_METHOD'] == "POST") {
-    $sql = "SELECT autor.name AS Autor, buch.titel AS Titel, verlag.name AS Verlag, buch.jahr AS Jahr, buch.ort AS Ort, buch.isbn AS ISBN, buch.sachgebiet AS Sachgebiet
-    FROM autor, buch, verlag
-    WHERE autor.ANR = buch.ANR
+    // returns ANR or 0 if not existent
+    $autors = explode(",", $_POST["autor"]);
+    //$aranr = array();
+    foreach($autors as $autor) {
+        $query = $con->prepare("SELECT IF((SELECT COUNT(*)
+                                        FROM autor
+                                        WHERE name=?)>0,
+                                        (SELECT ANR
+                                            FROM autor
+                                            WHERE name=?
+                                            LIMIT 1),
+                                            0)
+                                FROM autor
+                                LIMIT 1");
+        $query->bind_param('ss', $autor, $autor);
+        $query->execute();
+        $query->bind_result($anr);
+        while ($query->fetch()) {
+            $nanr = $anr;
+        }
+        $query->close();
+
+        if ($nanr == 0) { // wenn autor nicht vorhanden -> hinzufügen
+            $query = $con->prepare("INSERT INTO autor (name) VALUES(?)");
+            $query->bind_param('s', $autor);
+            $query->execute();
+            $query->close();
+            // ANR wird automatisch erstellt
+            $query = $con->prepare("SELECT ANR
+                                    FROM autor
+                                    WHERE name=?
+                                    LIMIT 1");
+            $query->bind_param('s', $autor);
+            $query->execute();
+            $query->bind_result($anr);
+            while ($query->fetch()) {
+                $nanr = $anr;
+            }
+            $query->close();
+        }
+    }
+    // repeat process for verlag to find or create VNR
+    $query = $con->prepare("SELECT IF((SELECT COUNT(*)
+                                       FROM verlag
+                                       WHERE name=?)>0,
+                                       (SELECT VNR
+                                        FROM verlag
+                                        WHERE name=?
+                                        LIMIT 1),
+                                        0)
+                            FROM verlag
+                            LIMIT 1");
+    $query->bind_param('ss', $_POST["verlag"], $_POST["verlag"]);
+    $query->execute();
+    $query->bind_result($vnr);
+    while ($query->fetch()) {
+        $nvnr = $vnr;
+    }
+    $query->close();
+    if ($nvnr == 0) {
+        $query = $con->prepare("INSERT INTO verlag (name) VALUES(?)");
+        $query->bind_param('s', $_POST["verlag"]);
+        $query->execute();
+        $query->close();
+
+        $query = $con->prepare("SELECT VNR
+                                FROM verlag
+                                WHERE name=?
+                                LIMIT 1");
+        $query->bind_param('s', $_POST["verlag"]);
+        $query->execute();
+        $query->bind_result($vnr);
+        while ($query->fetch()) {
+            $nvnr = $vnr;
+        }
+        $query->close();
+    }
+    // insert new data into buch
+    $query = $con->prepare("INSERT INTO buch (titel, VNR, jahr, ort, isbn) VALUES(?, ?, ?, ?, ?)");
+    $query->bind_param('ssiss', $_POST["titel"], $nvnr, $_POST["jahr"], $_POST["ort"], $_POST["isbn"]);
+    $query->execute();
+    $query->close();
+    // get ID von diesem Eintrag
+    $query = $con->prepare("SELECT ID 
+                            FROM buch 
+                            WHERE titel=?
+                            AND VNR=?
+                            AND jahr=?
+                            AND ort=?
+                            AND isbn=? 
+                            ORDER BY ID DESC 
+                            LIMIT 1");
+    $query->bind_param('ssiss', $_POST["titel"], $nvnr, $_POST["jahr"], $_POST["ort"], $_POST["isbn"]);
+    $query->execute();
+    $query->bind_result($id);
+        while ($query->fetch()) {
+            $nid = $id;
+        }
+    $query->close();
+    // insert ANRs in buchautor
+    foreach($autors as $autor) {
+        $query = $con->prepare("SELECT ANR
+                                FROM autor
+                                WHERE name=?
+                                LIMIT 1");
+        $query->bind_param('s', $autor);
+        $query->execute();
+        $query->bind_result($anr);
+        while ($query->fetch()) {
+            $nanr = $anr;
+        }
+        $query->close();
+        $query = $con->prepare("INSERT INTO buchautor (ANR, IDBUCH) VALUES(?, ?)");
+        $query->bind_param('ii', $nanr, $nid);
+        $query->execute();
+        $query->close();
+    }
+    // $_POST["sachgebiet"]
+    $sachgebiete = explode(",", $_POST["sachgebiet"]);
+    foreach($sachgebiete as $sachgebiet) {
+        $query = $con->prepare("SELECT IF((SELECT COUNT(*)
+                                        FROM sachgebiet
+                                        WHERE name=?)>0,
+                                        (SELECT SNR
+                                            FROM sachgebiet
+                                            WHERE name=?
+                                            LIMIT 1),
+                                            0)
+                                FROM sachgebiet
+                                LIMIT 1");
+        $query->bind_param('ss', $sachgebiet, $sachgebiet);
+        $query->execute();
+        $query->bind_result($snr);
+        while ($query->fetch()) {
+            $nsnr = $snr;
+        }
+        $query->close();
+
+        if ($nsnr == 0) { // wenn sachgebiet nicht vorhanden -> hinzufügen
+            $query = $con->prepare("INSERT INTO sachgebiet (name) VALUES(?)");
+            $query->bind_param('s', $sachgebiet);
+            $query->execute();
+            $query->close();
+            // SNR wird automatisch erstellt
+            $query = $con->prepare("SELECT SNR
+                                    FROM sachgebiet
+                                    WHERE name=?
+                                    LIMIT 1");
+            $query->bind_param('s', $sachgebiet);
+            $query->execute();
+            $query->bind_result($snr);
+            while ($query->fetch()) {
+                $nsnr = $snr;
+            }
+            $query->close();
+        }
+    }
+    // buchgebiet beziehungstabelle füllen
+    foreach($sachgebiete as $sachgebiet) {
+        $query = $con->prepare("SELECT SNR
+                                FROM sachgebiet
+                                WHERE name=?
+                                LIMIT 1");
+        $query->bind_param('s', $sachgebiet);
+        $query->execute();
+        $query->bind_result($snr);
+        while ($query->fetch()) {
+            $nsnr = $snr;
+        }
+        $query->close();
+        $query = $con->prepare("INSERT INTO buchgebiet (SNR, IDBUCH) VALUES(?, ?)");
+        $query->bind_param('ii', $nsnr, $nid);
+        $query->execute();
+        $query->close();
+    }
+    // display db entry
+    $sql = "SELECT autor.name AS Autor, buch.titel AS Titel, verlag.name AS Verlag, buch.jahr AS Jahr, buch.ort AS Ort, buch.isbn AS ISBN, sachgebiet.name AS Sachgebiet
+    FROM autor, buchautor, buch, verlag, buchgebiet, sachgebiet
+    WHERE autor.ANR = buchautor.ANR
+    AND buchautor.IDBUCH = buch.ID
     AND verlag.VNR = buch.VNR
+    AND sachgebiet.SNR = buchgebiet.SNR
+    AND buchgebiet.IDBUCH = buch.ID
     ORDER BY buch.ID DESC
     LIMIT 1";
 	$result = $con->query($sql);
