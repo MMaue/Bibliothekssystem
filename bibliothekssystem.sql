@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 21. November 2021 um 21:31
+-- Erstellungszeit: 21. November 2021 um 22:27
 -- Server Version: 5.1.41
 -- PHP-Version: 5.3.1
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `autor` (
   `name` char(50) NOT NULL,
   PRIMARY KEY (`ANR`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=53 ;
 
 --
 -- Daten für Tabelle `autor`
@@ -69,7 +69,22 @@ INSERT INTO `autor` (`ANR`, `name`) VALUES
 (34, 'Wolfgang Kricke'),
 (31, 'Wolfgang Pfeil'),
 (32, 'Rolf Winter'),
-(33, 'Willi WÃ¶rstenfeld');
+(33, 'Willi WÃ¶rstenfeld'),
+(38, 'Bardo Diehl'),
+(39, 'Roger Erb'),
+(40, 'Klaus Lindner'),
+(41, 'Claus Schmalhofer'),
+(42, 'Lutz-Helmut SchÃ¶n'),
+(43, 'Peter Tillmanns'),
+(44, 'Grehn Grehn'),
+(45, 'Joachim Gom'),
+(46, 'Joachim Krauseoletz'),
+(47, ''),
+(48, 'Wilfried Kuhn'),
+(49, 'Josef Breitsameter'),
+(50, 'Herbert Brosch'),
+(51, 'Karola Niehoff'),
+(52, 'Hans Holz');
 
 -- --------------------------------------------------------
 
@@ -85,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `buch` (
   `ort` char(30) DEFAULT NULL,
   `isbn` char(17) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Daten für Tabelle `buch`
@@ -99,7 +114,10 @@ INSERT INTO `buch` (`ID`, `titel`, `VNR`, `jahr`, `ort`, `isbn`) VALUES
 (5, 'Das große Tafelwerk interaktiv 2.0\r\nFormelsammlung für die Sekundarstufen I und II', 5, 2019, 'Wemding', '978-3-06-001611-2'),
 (6, 'Harry Potter and the Philosopher''s Stone', 6, 2005, NULL, '978-3551354013'),
 (14, 'Macbeth', 8, 1606, 'England', '978-0-521-68098-1'),
-(17, 'Das groÃŸe Tafelwerk interaktiv 2.0 Formelsammlung fÃ¼r die Sekundarstufen I und II', 5, 2019, 'Wemding', '978-3-06-001611-2');
+(18, 'Physik Oberstufe', 5, 2008, 'Berlin', '978-3-06-013006-1'),
+(19, 'Metzler Physik', 9, 2007, 'Braunschweig', ''),
+(17, 'Das groÃŸe Tafelwerk interaktiv 2.0 Formelsammlung fÃ¼r die Sekundarstufen I und II', 5, 2019, 'Wemding', '978-3-06-001611-2'),
+(20, 'Handbuch der experimentellen Physik. Sekundarstufe II. Ausbildung', 10, 1995, 'KÃ¶ln', '');
 
 -- --------------------------------------------------------
 
@@ -131,7 +149,23 @@ INSERT INTO `buchautor` (`ANR`, `IDBUCH`) VALUES
 (37, 17),
 (31, 17),
 (32, 17),
-(33, 17);
+(33, 17),
+(38, 18),
+(39, 18),
+(40, 18),
+(41, 18),
+(42, 18),
+(43, 18),
+(32, 18),
+(44, 19),
+(45, 19),
+(46, 19),
+(47, 19),
+(48, 20),
+(49, 20),
+(50, 20),
+(51, 20),
+(52, 20);
 
 -- --------------------------------------------------------
 
@@ -168,7 +202,10 @@ INSERT INTO `buchgebiet` (`SNR`, `IDBUCH`) VALUES
 (7, 17),
 (2, 17),
 (5, 17),
-(8, 17);
+(8, 17),
+(2, 18),
+(2, 19),
+(2, 20);
 
 -- --------------------------------------------------------
 
@@ -270,7 +307,7 @@ CREATE TABLE IF NOT EXISTS `verlag` (
   `name` char(45) NOT NULL,
   PRIMARY KEY (`VNR`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Daten für Tabelle `verlag`
@@ -283,7 +320,9 @@ INSERT INTO `verlag` (`VNR`, `name`) VALUES
 (4, 'Dr. Hut Verlag'),
 (5, 'Cornelsen'),
 (6, 'Carlsen'),
-(8, 'Cambridge University Press');
+(8, 'Cambridge University Press'),
+(9, 'Bildungshaus'),
+(10, 'Aulis Verlag in Friedrich Verlag');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
