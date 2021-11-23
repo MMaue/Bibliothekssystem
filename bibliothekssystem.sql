@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 21. November 2021 um 22:27
+-- Erstellungszeit: 23. November 2021 um 18:57
 -- Server Version: 5.1.41
 -- PHP-Version: 5.3.1
 
@@ -247,7 +247,6 @@ CREATE TABLE IF NOT EXISTS `leser` (
   `name` char(25) NOT NULL,
   `geburtsdatum` date NOT NULL,
   `mail` char(100) DEFAULT NULL,
-  `mahnungen` int(2) DEFAULT NULL,
   `pwhash` char(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
@@ -256,17 +255,17 @@ CREATE TABLE IF NOT EXISTS `leser` (
 -- Daten für Tabelle `leser`
 --
 
-INSERT INTO `leser` (`id`, `vorname`, `name`, `geburtsdatum`, `mail`, `mahnungen`, `pwhash`) VALUES
-(1, 'admin', 'admin', '0000-00-00', 'admin@bibliothek.onmicrosoft.com', NULL, '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918'),
-(2, 'Hello', 'World', '1970-01-01', 'helloworld@bibliothek.onmicrosoft.com', NULL, 'a591a6d40bf420404a011733cfb7b190d62c65bf0bcda32b57b277d9ad9f146e'),
-(3, 'Miguel', 'Mauer', '2003-06-14', 'mauemigu03@hildagymnasiumorg.onmicrosoft.com', NULL, '46ea99571befbe414536542a2a819736a6200f16641ed0b97182f7deb0f42e2c'),
-(4, 'Andi', 'Macht', '1998-04-22', 'andimacht98@hildagymnasiumorg.onmicrosoft.com', NULL, 'ab02a1a0407a916b369672ffb08a741e9085ade554660aef823b7ad75e6e6697'),
-(5, 'Farin', 'Urlaub', '2021-10-26', 'farinurlaub21@bibliothek.com', NULL, 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'),
-(6, 'Klaus', 'Uhr', '2021-11-16', 'klausur@in.info.hildagymnasiumorg.onmicrosoft.com', NULL, '74bfc103a45633e7452f8e780e6d08795a5b8dd9a8ea011baa5a19bce1056c87'),
-(7, 'André', 'Richtung', '2022-03-14', 'andreeerichtung@bibliothek.com', NULL, 'b3cddf7a103bb3a88721cb2c7d2b7cb8833b7a95d0a5dc00f3e28e02a99be5b7'),
-(13, 'Third', 'Test', '2021-11-09', 'test@mail.com', NULL, 'd04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa'),
-(14, 'Peter', 'Fischer', '1968-04-13', 'peterfischer@gmx.de', NULL, '026ad9b14a7453b7488daa0c6acbc258b1506f52c441c7c465474c1a564394ff'),
-(15, 'Volker', 'Ackermann', '1968-12-02', 'volkerackermann@freenet.de', NULL, '6c035e5fd6cff34d541f92ad823ce32e86472ed2876f3f28e769d061709a6ab3');
+INSERT INTO `leser` (`id`, `vorname`, `name`, `geburtsdatum`, `mail`, `pwhash`) VALUES
+(1, 'admin', 'admin', '0000-00-00', 'admin@bibliothek.onmicrosoft.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918'),
+(2, 'Hello', 'World', '1970-01-01', 'helloworld@bibliothek.onmicrosoft.com', 'a591a6d40bf420404a011733cfb7b190d62c65bf0bcda32b57b277d9ad9f146e'),
+(3, 'Miguel', 'Mauer', '2003-06-14', 'mauemigu03@hildagymnasiumorg.onmicrosoft.com', '46ea99571befbe414536542a2a819736a6200f16641ed0b97182f7deb0f42e2c'),
+(4, 'Andi', 'Macht', '1998-04-22', 'andimacht98@hildagymnasiumorg.onmicrosoft.com', 'ab02a1a0407a916b369672ffb08a741e9085ade554660aef823b7ad75e6e6697'),
+(5, 'Farin', 'Urlaub', '2021-10-26', 'farinurlaub21@bibliothek.com', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'),
+(6, 'Klaus', 'Uhr', '2021-11-16', 'klausur@in.info.hildagymnasiumorg.onmicrosoft.com', '74bfc103a45633e7452f8e780e6d08795a5b8dd9a8ea011baa5a19bce1056c87'),
+(7, 'André', 'Richtung', '2022-03-14', 'andreeerichtung@bibliothek.com', 'b3cddf7a103bb3a88721cb2c7d2b7cb8833b7a95d0a5dc00f3e28e02a99be5b7'),
+(13, 'Third', 'Test', '2021-11-09', 'test@mail.com', 'd04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa'),
+(14, 'Peter', 'Fischer', '1968-04-13', 'peterfischer@gmx.de', '026ad9b14a7453b7488daa0c6acbc258b1506f52c441c7c465474c1a564394ff'),
+(15, 'Volker', 'Ackermann', '1968-12-02', 'volkerackermann@freenet.de', '6c035e5fd6cff34d541f92ad823ce32e86472ed2876f3f28e769d061709a6ab3');
 
 -- --------------------------------------------------------
 

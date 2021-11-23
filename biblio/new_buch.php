@@ -220,8 +220,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     AND verlag.VNR = buch.VNR
     AND sachgebiet.SNR = buchgebiet.SNR
     AND buchgebiet.IDBUCH = buch.ID
-    ORDER BY buch.ID DESC
-    LIMIT 1";
+    AND buch.ID = $nid
+    ORDER BY buch.ID DESC";
 	$result = $con->query($sql);
 	create_table($result);
 }
