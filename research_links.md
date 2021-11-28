@@ -72,4 +72,5 @@
 - https://www.youtube.com/c/TechWithTim/search?query=database
 - https://de.wikipedia.org/wiki/Datei:Green_tick.svg
 - https://de.wikipedia.org/wiki/Datei:Red_x.svg
+- https://www.youtube.com/watch?v=cjdiIKFYeXQ
 - https://www.youtube.com/watch?v=AryZSCeKU9Y
