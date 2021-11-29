@@ -29,7 +29,9 @@ function create_linktable($path) {
 		$end = explode(".", $file);
 		if ($end[1] == "php") {
 			$name = get_title_of_file($file);
-			echo "<td><a href='$file'>$name</a></td>";
+			if ($name != "") {
+				echo "<td><a href='$file'>$name</a></td>";
+			}
 			//$n++;
 		}
 	}
@@ -58,6 +60,19 @@ function get_post_var($var) {
 	// stripslashes removes slashes
 	// htmlspecialchars interprets code-specialchars as chars
 	return htmlspecialchars(stripslashes(trim($_POST[$var])));
+}
+
+function create_options($result) {
+	if($result->num_rows > 0){
+		while($row = $result->fetch_assoc()) {
+			foreach ($row as $field) {
+				echo "<option>".$field."</option>".PHP_EOL;
+			}
+		}
+	}
+	else {
+		echo $con->error;
+	}
 }
 
 function create_table($result) {

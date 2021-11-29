@@ -45,7 +45,7 @@ else {
   $default = "SELECT * \n\tFROM buch";
   $verfuegbar = "SELECT DISTINCT buch.titel AS Titel, autor.name AS Name, buch.isbn AS ISBN, verlag.name AS Verlag, buch.jahr AS Jahr, buch.ort AS Ort, buch.sachgebiet AS Sachgebiet \nFROM buch, buchleser, verlag, autor \nWHERE autor.ANR = buch.ANR \nAND verlag.VNR = buch.VNR \nAND buch.ID = buchleser.IDBUCH \nAND buchleser.bis != 'NULL'\n";
   $history = "SELECT buch.id AS ID, titel AS Titel, isbn AS ISBN, vorname AS Vorname, name AS Name, von, bis\nFROM buch, buchleser, leser\nWHERE buch.id = buchleser.idbuch\nAND leser.id = buchleser.idleser";
-  echo $history;
+  echo $default;
 }
 ?>
 </textarea>
@@ -56,7 +56,7 @@ else {
 <?php
 // execute any SQL query from the textarea
 if($_SERVER['REQUEST_METHOD'] == "POST") {
-	//read from database
+	//read from database 
 	$query = $_POST['sqlfeld'];
 	$result = $con->query($query);
 	create_table($result);

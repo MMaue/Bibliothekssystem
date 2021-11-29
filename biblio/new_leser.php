@@ -57,7 +57,7 @@ session_start();
     <table class="invisible"><tbody>
 	<tr><td>Vorname: </td><td><input id="text" type="text" name="vorname" placeholder="Max"></td></tr>
     <tr><td>Name: </td><td><input id="text" type="text" name="name" placeholder="Mustermann"></td></tr>
-    <tr><td>Geburtsdatum: </td><td><input id="text" type="text" name="gebdate" placeholder="2021-11-09"></td></tr>
+    <tr><td>Geburtsdatum: </td><td><input type="date" name="gebdate" value="2003-01-01"></td></tr>
     <tr><td>Mail: </td><td><input id="text" type="text" name="mail" placeholder="maxm@gmail.com"></td></tr>
 	<tr><td>Passwort: </td><td><input id="text" type="password" name="password" placeholder="passwort"></td></tr>
     </tbody></table><br><br>
