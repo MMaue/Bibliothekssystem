@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 23. November 2021 um 18:57
+-- Erstellungszeit: 29. November 2021 um 23:36
 -- Server Version: 5.1.41
 -- PHP-Version: 5.3.1
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `autor` (
   `name` char(50) NOT NULL,
   PRIMARY KEY (`ANR`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=53 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=55 ;
 
 --
 -- Daten für Tabelle `autor`
@@ -84,7 +84,9 @@ INSERT INTO `autor` (`ANR`, `name`) VALUES
 (49, 'Josef Breitsameter'),
 (50, 'Herbert Brosch'),
 (51, 'Karola Niehoff'),
-(52, 'Hans Holz');
+(52, 'Hans Holz'),
+(53, 'Hans Bonnet'),
+(54, 'Richard Herbert Wilkinson');
 
 -- --------------------------------------------------------
 
@@ -100,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `buch` (
   `ort` char(30) DEFAULT NULL,
   `isbn` char(17) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
 -- Daten für Tabelle `buch`
@@ -111,13 +113,15 @@ INSERT INTO `buch` (`ID`, `titel`, `VNR`, `jahr`, `ort`, `isbn`) VALUES
 (2, 'Romeo & Juliet', 2, 2008, 'Printed in China', '978-0-19-832166-8'),
 (3, 'Woyzeck', 3, 2013, 'Ditzingen', '978-3-15-016101-2'),
 (4, 'Entwicklung von außergewöhnlich aktiven, kooperativen Aluminium?Fluorid-basierten Lewis-Säure/Oniumsalz-Katalysatoren für die asymmetrische Carboxycyanierung von Aldehyden und Untersuchungen zu ihrer Anwendbarkeit in verwandten enantioselektiven Transformationen', 4, 2018, 'ortsnamehiereinfügen', '978-3843938433'),
-(5, 'Das große Tafelwerk interaktiv 2.0\r\nFormelsammlung für die Sekundarstufen I und II', 5, 2019, 'Wemding', '978-3-06-001611-2'),
+(5, 'Das groÃŸe Tafelwerk interaktiv 2.0 Formelsammlung fÃ¼r die Sekundarstufen I und II', 5, 2019, 'Wemding', '978-3-06-001611-2'),
 (6, 'Harry Potter and the Philosopher''s Stone', 6, 2005, NULL, '978-3551354013'),
 (14, 'Macbeth', 8, 1606, 'England', '978-0-521-68098-1'),
 (18, 'Physik Oberstufe', 5, 2008, 'Berlin', '978-3-06-013006-1'),
 (19, 'Metzler Physik', 9, 2007, 'Braunschweig', ''),
 (17, 'Das groÃŸe Tafelwerk interaktiv 2.0 Formelsammlung fÃ¼r die Sekundarstufen I und II', 5, 2019, 'Wemding', '978-3-06-001611-2'),
-(20, 'Handbuch der experimentellen Physik. Sekundarstufe II. Ausbildung', 10, 1995, 'KÃ¶ln', '');
+(20, 'Handbuch der experimentellen Physik. Sekundarstufe II. Ausbildung', 10, 1995, 'KÃ¶ln', ''),
+(21, 'Lexikon der Ã¤gyptischen Religionsgeschichte', 11, 2000, 'Hamburg', '3-937872-08-6'),
+(22, 'Die Welt der GÃ¶tter im Alten Ã„gypten: Glaube, Macht, Mythologie', 12, 2003, 'Stuttgart', '3-8062-1819-6');
 
 -- --------------------------------------------------------
 
@@ -165,7 +169,9 @@ INSERT INTO `buchautor` (`ANR`, `IDBUCH`) VALUES
 (49, 20),
 (50, 20),
 (51, 20),
-(52, 20);
+(52, 20),
+(53, 21),
+(54, 22);
 
 -- --------------------------------------------------------
 
@@ -205,7 +211,17 @@ INSERT INTO `buchgebiet` (`SNR`, `IDBUCH`) VALUES
 (8, 17),
 (2, 18),
 (2, 19),
-(2, 20);
+(2, 20),
+(10, 21),
+(11, 21),
+(12, 21),
+(13, 21),
+(10, 22),
+(11, 22),
+(12, 22),
+(13, 22),
+(14, 22),
+(15, 22);
 
 -- --------------------------------------------------------
 
@@ -249,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `leser` (
   `mail` char(100) DEFAULT NULL,
   `pwhash` char(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Daten für Tabelle `leser`
@@ -265,7 +281,8 @@ INSERT INTO `leser` (`id`, `vorname`, `name`, `geburtsdatum`, `mail`, `pwhash`) 
 (7, 'André', 'Richtung', '2022-03-14', 'andreeerichtung@bibliothek.com', 'b3cddf7a103bb3a88721cb2c7d2b7cb8833b7a95d0a5dc00f3e28e02a99be5b7'),
 (13, 'Third', 'Test', '2021-11-09', 'test@mail.com', 'd04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa'),
 (14, 'Peter', 'Fischer', '1968-04-13', 'peterfischer@gmx.de', '026ad9b14a7453b7488daa0c6acbc258b1506f52c441c7c465474c1a564394ff'),
-(15, 'Volker', 'Ackermann', '1968-12-02', 'volkerackermann@freenet.de', '6c035e5fd6cff34d541f92ad823ce32e86472ed2876f3f28e769d061709a6ab3');
+(15, 'Volker', 'Ackermann', '1968-12-02', 'volkerackermann@freenet.de', '6c035e5fd6cff34d541f92ad823ce32e86472ed2876f3f28e769d061709a6ab3'),
+(16, 'Geb', 'Urtsdatum', '2021-05-29', 'neuertest@gmail.com', '32e5983d40117146b2c94707115b611195e54bcddcccbe8391b70b7848271104');
 
 -- --------------------------------------------------------
 
@@ -278,7 +295,7 @@ CREATE TABLE IF NOT EXISTS `sachgebiet` (
   `name` char(45) NOT NULL,
   PRIMARY KEY (`SNR`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Daten für Tabelle `sachgebiet`
@@ -293,7 +310,13 @@ INSERT INTO `sachgebiet` (`SNR`, `name`) VALUES
 (6, 'Informatik'),
 (7, 'Astronomie'),
 (8, 'Biologie'),
-(9, 'Fantasy Romane');
+(9, 'Fantasy Romane'),
+(10, 'Ã„gypten'),
+(11, 'Geschichte'),
+(12, 'Religion'),
+(13, 'Mythologie'),
+(14, 'Glaube'),
+(15, 'Macht');
 
 -- --------------------------------------------------------
 
@@ -306,7 +329,7 @@ CREATE TABLE IF NOT EXISTS `verlag` (
   `name` char(45) NOT NULL,
   PRIMARY KEY (`VNR`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Daten für Tabelle `verlag`
@@ -321,7 +344,9 @@ INSERT INTO `verlag` (`VNR`, `name`) VALUES
 (6, 'Carlsen'),
 (8, 'Cambridge University Press'),
 (9, 'Bildungshaus'),
-(10, 'Aulis Verlag in Friedrich Verlag');
+(10, 'Aulis Verlag in Friedrich Verlag'),
+(11, 'Nikol'),
+(12, 'Theiss');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
