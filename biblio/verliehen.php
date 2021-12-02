@@ -19,12 +19,12 @@ session_start();
 
 <table class="farbig"><tbody>
 <?php
-$sql = "SELECT leser.ID AS ID, CONCAT(leser.vorname, ' ', leser.name) AS Leser, COUNT(*) AS Mahnungen
-		FROM buchleser, leser
-		WHERE buchleser.IDLESER = leser.ID
-		AND IF(buchleser.bis IS NULL , ABS(DATEDIFF(CURRENT_DATE(), buchleser.von)), ABS(DATEDIFF(buchleser.bis, buchleser.von)))>30
-		GROUP BY leser.ID
-		ORDER BY Mahnungen DESC";
+$sql = "SELECT buch.ID, buch.titel AS Titel, buch.isbn AS ISBN, CONCAT(leser.vorname, ' ', leser.name) AS Leser, buchleser.von AS 'Ausgeliehen am', ABS(DATEDIFF(CURRENT_DATE(), buchleser.von)) AS 'Dauer in Tagen'
+		FROM buch, buchleser, leser 
+		WHERE buch.ID = buchleser.IDBUCH
+		AND leser.ID = buchleser.IDLESER
+		AND buchleser.bis IS NULL
+		ORDER BY buch.ID ASC";
 	$result = $con->query($sql);
 	create_table($result);
 ?>
