@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 29. November 2021 um 23:36
+-- Erstellungszeit: 02. Dezember 2021 um 20:47
 -- Server Version: 5.1.41
 -- PHP-Version: 5.3.1
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `autor` (
   `name` char(50) NOT NULL,
   PRIMARY KEY (`ANR`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=55 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
 
 --
 -- Daten für Tabelle `autor`
@@ -86,7 +86,8 @@ INSERT INTO `autor` (`ANR`, `name`) VALUES
 (51, 'Karola Niehoff'),
 (52, 'Hans Holz'),
 (53, 'Hans Bonnet'),
-(54, 'Richard Herbert Wilkinson');
+(54, 'Richard Herbert Wilkinson'),
+(55, 'Stephan Lessenich');
 
 -- --------------------------------------------------------
 
@@ -102,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `buch` (
   `ort` char(30) DEFAULT NULL,
   `isbn` char(17) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Daten für Tabelle `buch`
@@ -121,7 +122,8 @@ INSERT INTO `buch` (`ID`, `titel`, `VNR`, `jahr`, `ort`, `isbn`) VALUES
 (17, 'Das groÃŸe Tafelwerk interaktiv 2.0 Formelsammlung fÃ¼r die Sekundarstufen I und II', 5, 2019, 'Wemding', '978-3-06-001611-2'),
 (20, 'Handbuch der experimentellen Physik. Sekundarstufe II. Ausbildung', 10, 1995, 'KÃ¶ln', ''),
 (21, 'Lexikon der Ã¤gyptischen Religionsgeschichte', 11, 2000, 'Hamburg', '3-937872-08-6'),
-(22, 'Die Welt der GÃ¶tter im Alten Ã„gypten: Glaube, Macht, Mythologie', 12, 2003, 'Stuttgart', '3-8062-1819-6');
+(22, 'Die Welt der GÃ¶tter im Alten Ã„gypten: Glaube, Macht, Mythologie', 12, 2003, 'Stuttgart', '3-8062-1819-6'),
+(23, 'Neben uns die Sintflut', 13, 2018, 'MÃ¼nchen', '9783492312691');
 
 -- --------------------------------------------------------
 
@@ -171,7 +173,8 @@ INSERT INTO `buchautor` (`ANR`, `IDBUCH`) VALUES
 (51, 20),
 (52, 20),
 (53, 21),
-(54, 22);
+(54, 22),
+(55, 23);
 
 -- --------------------------------------------------------
 
@@ -221,7 +224,8 @@ INSERT INTO `buchgebiet` (`SNR`, `IDBUCH`) VALUES
 (12, 22),
 (13, 22),
 (14, 22),
-(15, 22);
+(15, 22),
+(16, 23);
 
 -- --------------------------------------------------------
 
@@ -295,7 +299,7 @@ CREATE TABLE IF NOT EXISTS `sachgebiet` (
   `name` char(45) NOT NULL,
   PRIMARY KEY (`SNR`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Daten für Tabelle `sachgebiet`
@@ -316,7 +320,8 @@ INSERT INTO `sachgebiet` (`SNR`, `name`) VALUES
 (12, 'Religion'),
 (13, 'Mythologie'),
 (14, 'Glaube'),
-(15, 'Macht');
+(15, 'Macht'),
+(16, 'Ã–konomie');
 
 -- --------------------------------------------------------
 
@@ -329,7 +334,7 @@ CREATE TABLE IF NOT EXISTS `verlag` (
   `name` char(45) NOT NULL,
   PRIMARY KEY (`VNR`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Daten für Tabelle `verlag`
@@ -346,7 +351,8 @@ INSERT INTO `verlag` (`VNR`, `name`) VALUES
 (9, 'Bildungshaus'),
 (10, 'Aulis Verlag in Friedrich Verlag'),
 (11, 'Nikol'),
-(12, 'Theiss');
+(12, 'Theiss'),
+(13, 'Piper');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
