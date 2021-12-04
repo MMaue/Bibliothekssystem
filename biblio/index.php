@@ -20,12 +20,12 @@ session_start();
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 	<div style="font-size: 20px;margin: 10px;color: white;">Suchoptionen</div>
     <table class="invisible"><tbody>
-	<tr><td>Sachgebiet: </td><td><input id="text" type="text" name="sachgebiet" list="sugsa" value=<?php if (isset($_POST['sachgebiet'])) { echo $_POST['sachgebiet'];}?>></td></tr>
-    <tr><td>Autor: </td><td><input id="text" type="text" name="autor" list="sugau" value=<?php if (isset($_POST['autor'])) { echo $_POST['autor'];}?>></td></tr>
-    <tr><td>Titel: </td><td><input id="text" type="text" name="titel" list="sugti" value=<?php if (isset($_POST['titel'])) { echo $_POST['titel'];}?>></td></tr>
-    <tr><td>Erscheinungsort: </td><td><input id="text" type="text" name="ort" list="sugor" value=<?php if (isset($_POST['ort'])) { echo $_POST['ort'];}?>></td></tr>
-	<tr><td>Erscheinungsjahr: </td><td><input id="text" type="text" name="jahr" list="sugja" value=<?php if (isset($_POST['jahr'])) { echo $_POST['jahr'];}?>></td></tr>
-    <tr><td>Verlag: </td><td><input id="text" type="text" name="verlag" list="sugve" value=<?php if (isset($_POST['verlag'])) { echo $_POST['verlag'];}?>></td></tr>
+	<tr><td>Sachgebiet: </td><td><input id="text" type="text" name="sachgebiet" list="sugsa" value=<?php //if (isset($_POST['sachgebiet'])) { echo $_POST['sachgebiet'];}?>></td></tr>
+    <tr><td>Autor: </td><td><input id="text" type="text" name="autor" list="sugau" value=<?php //if (isset($_POST['autor'])) { echo $_POST['autor'];}?>></td></tr>
+    <tr><td>Titel: </td><td><input id="text" type="text" name="titel" list="sugti" value=<?php //if (isset($_POST['titel'])) { echo $_POST['titel'];}?>></td></tr>
+    <tr><td>Erscheinungsort: </td><td><input id="text" type="text" name="ort" list="sugor" value=<?php //if (isset($_POST['ort'])) { echo $_POST['ort'];}?>></td></tr>
+	<tr><td>Erscheinungsjahr: </td><td><input id="text" type="text" name="jahr" list="sugja" value=<?php //if (isset($_POST['jahr'])) { echo $_POST['jahr'];}?>></td></tr>
+    <tr><td>Verlag: </td><td><input id="text" type="text" name="verlag" list="sugve" value=<?php //if (isset($_POST['verlag'])) { echo $_POST['verlag'];}?>></td></tr>
 </tbody></table><br>
 <datalist id="sugsa">
   <?php 
@@ -91,8 +91,52 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 			  AND buch.jahr LIKE '%$jahr%'
 			  AND verlag.name LIKE '%$verlag%'
 			  ORDER BY buch.titel ASC";
-	$result = $con->query($query);
-	create_table($result);
+
+	$query_velag = "SELECT DISTINCT verlag.name
+					FROM verlag, buch
+					WHERE verlag.VNR = buch.VNR
+					AND buch.titel = ''
+					ORDER BY verlag.name ASC";
+
+	mysql_connect("","root");
+    mysql_select_db("bibliothekssystem");
+	$result = mysql_query($query);
+	$num = mysql_num_rows($result);
+	echo "Anzahl der Einträge: ".$num.PHP_EOL;
+
+	if($num > 0){
+		$n = 0;
+		echo "<tr>".PHP_EOL;
+		echo "<th>Titel</th>".PHP_EOL;
+		echo "<th>Verlag</th>".PHP_EOL;
+		echo "</tr>".PHP_EOL;
+
+		while ($dsatz = mysql_fetch_assoc($result)) {
+			$titel = $dsatz["Titel"];
+			if ($n % 2 == 0) {
+				echo "<tr class=\"even\">".PHP_EOL;
+			}
+			else {
+				echo "<tr class=\"odd\">".PHP_EOL;
+			}
+			echo "<td>".$titel."</td>".PHP_EOL;
+			echo "<td>".PHP_EOL;
+			$result_verlag = mysql_query("SELECT DISTINCT verlag.name
+										FROM verlag, buch
+										WHERE verlag.VNR = buch.VNR
+										AND buch.titel = '$titel'
+										ORDER BY verlag.name ASC");
+			while ($dsatz_verlag = mysql_fetch_assoc($result_verlag)) {
+				echo "- ".$dsatz_verlag["name"]."<br>";
+			}
+			echo "</td>".PHP_EOL;
+			echo "</tr>".PHP_EOL;
+			$n ++;
+		}
+	}
+
+	//$result = $con->query($query);
+	//create_table($result);
 
 	/* 
 	$sachgebiet = $_POST["sachgebiet"];
