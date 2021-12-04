@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 02. Dezember 2021 um 20:47
+-- Erstellungszeit: 04. Dezember 2021 um 16:02
 -- Server Version: 5.1.41
 -- PHP-Version: 5.3.1
 
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `buch` (
   `ort` char(30) DEFAULT NULL,
   `isbn` char(17) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
 
 --
 -- Daten für Tabelle `buch`
@@ -118,12 +118,15 @@ INSERT INTO `buch` (`ID`, `titel`, `VNR`, `jahr`, `ort`, `isbn`) VALUES
 (6, 'Harry Potter and the Philosopher''s Stone', 6, 2005, NULL, '978-3551354013'),
 (14, 'Macbeth', 8, 1606, 'England', '978-0-521-68098-1'),
 (18, 'Physik Oberstufe', 5, 2008, 'Berlin', '978-3-06-013006-1'),
-(19, 'Metzler Physik', 9, 2007, 'Braunschweig', ''),
+(19, 'Metzler Physik', 9, 2007, 'Braunschweig', '978-3-507-10710-6'),
 (17, 'Das groÃŸe Tafelwerk interaktiv 2.0 Formelsammlung fÃ¼r die Sekundarstufen I und II', 5, 2019, 'Wemding', '978-3-06-001611-2'),
 (20, 'Handbuch der experimentellen Physik. Sekundarstufe II. Ausbildung', 10, 1995, 'KÃ¶ln', ''),
 (21, 'Lexikon der Ã¤gyptischen Religionsgeschichte', 11, 2000, 'Hamburg', '3-937872-08-6'),
 (22, 'Die Welt der GÃ¶tter im Alten Ã„gypten: Glaube, Macht, Mythologie', 12, 2003, 'Stuttgart', '3-8062-1819-6'),
-(23, 'Neben uns die Sintflut', 13, 2018, 'MÃ¼nchen', '9783492312691');
+(23, 'Neben uns die Sintflut', 13, 2018, 'MÃ¼nchen', '9783492312691'),
+(24, 'Das groÃŸe Tafelwerk interaktiv 2.0 Formelsammlung fÃ¼r die Sekundarstufen I und II', 14, 2012, 'Wemding', '978-3-507-10552-9'),
+(25, 'Macbeth', 14, 1606, 'England', '3-944472-08-6'),
+(26, 'Neben uns die Sintflut', 14, 2018, 'Hamburg', '3-937222-08-6');
 
 -- --------------------------------------------------------
 
@@ -174,7 +177,17 @@ INSERT INTO `buchautor` (`ANR`, `IDBUCH`) VALUES
 (52, 20),
 (53, 21),
 (54, 22),
-(55, 23);
+(55, 23),
+(26, 24),
+(34, 24),
+(35, 24),
+(36, 24),
+(37, 24),
+(31, 24),
+(32, 24),
+(33, 24),
+(22, 25),
+(55, 26);
 
 -- --------------------------------------------------------
 
@@ -225,7 +238,15 @@ INSERT INTO `buchgebiet` (`SNR`, `IDBUCH`) VALUES
 (13, 22),
 (14, 22),
 (15, 22),
-(16, 23);
+(16, 23),
+(1, 24),
+(6, 24),
+(7, 24),
+(2, 24),
+(5, 24),
+(8, 24),
+(3, 25),
+(16, 26);
 
 -- --------------------------------------------------------
 
@@ -253,7 +274,9 @@ INSERT INTO `buchleser` (`IDBUCH`, `IDLESER`, `von`, `bis`) VALUES
 (3, 7, '2021-06-14', '2021-08-11'),
 (4, 5, '2021-10-25', '2021-10-31'),
 (1, 3, '2019-08-07', NULL),
-(6, 2, '2021-10-22', '2021-11-26');
+(6, 2, '2021-10-22', '2021-11-26'),
+(2, 5, '2021-12-04', '2021-12-05'),
+(19, 4, '2021-12-04', '2021-12-24');
 
 -- --------------------------------------------------------
 
@@ -334,7 +357,7 @@ CREATE TABLE IF NOT EXISTS `verlag` (
   `name` char(45) NOT NULL,
   PRIMARY KEY (`VNR`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Daten für Tabelle `verlag`
@@ -352,7 +375,8 @@ INSERT INTO `verlag` (`VNR`, `name`) VALUES
 (10, 'Aulis Verlag in Friedrich Verlag'),
 (11, 'Nikol'),
 (12, 'Theiss'),
-(13, 'Piper');
+(13, 'Piper'),
+(14, 'Anders Verlag');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
