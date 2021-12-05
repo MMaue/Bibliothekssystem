@@ -26,9 +26,9 @@ function create_linktable($path) {
 	//$n = 1;
 	$files = array_diff(scandir('./'), array('.', '..'));	
 	foreach($files as $file) {
-		$end = pathinfo($file, PATHINFO_EXTENSIONS);
-		//$end = explode(".", $file);
-		if ($end == "php") {
+		//$end = pathinfo($file, PATHINFO_EXTENSIONS);
+		$end = explode(".", $file);
+		if ($end[1] == "php") {
 			$name = get_title_of_file($file);
 			if ($name != "") {
 				echo "<td><a href='$file'>$name</a></td>";
