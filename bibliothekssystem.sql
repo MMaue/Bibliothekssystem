@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 04. Dezember 2021 um 16:02
+-- Erstellungszeit: 05. Dezember 2021 um 14:07
 -- Server Version: 5.1.41
 -- PHP-Version: 5.3.1
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `autor` (
   `name` char(50) NOT NULL,
   PRIMARY KEY (`ANR`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=57 ;
 
 --
 -- Daten für Tabelle `autor`
@@ -87,7 +87,8 @@ INSERT INTO `autor` (`ANR`, `name`) VALUES
 (52, 'Hans Holz'),
 (53, 'Hans Bonnet'),
 (54, 'Richard Herbert Wilkinson'),
-(55, 'Stephan Lessenich');
+(55, 'Stephan Lessenich'),
+(56, 'Sebastian Fitzek');
 
 -- --------------------------------------------------------
 
@@ -103,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `buch` (
   `ort` char(30) DEFAULT NULL,
   `isbn` char(17) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
 -- Daten für Tabelle `buch`
@@ -126,7 +127,13 @@ INSERT INTO `buch` (`ID`, `titel`, `VNR`, `jahr`, `ort`, `isbn`) VALUES
 (23, 'Neben uns die Sintflut', 13, 2018, 'MÃ¼nchen', '9783492312691'),
 (24, 'Das groÃŸe Tafelwerk interaktiv 2.0 Formelsammlung fÃ¼r die Sekundarstufen I und II', 14, 2012, 'Wemding', '978-3-507-10552-9'),
 (25, 'Macbeth', 14, 1606, 'England', '3-944472-08-6'),
-(26, 'Neben uns die Sintflut', 14, 2018, 'Hamburg', '3-937222-08-6');
+(26, 'Neben uns die Sintflut', 14, 2018, 'Hamburg', '3-937222-08-6'),
+(27, 'Der Insasse', 15, 2018, '', '978-3-426-28153-6'),
+(28, 'Flugangst 7A', 15, 2017, '', '978-3-426-19921-3'),
+(29, ' Das Joshua-Profil', 16, 2016, '', '978-3-404-17501-7'),
+(30, 'AchtNacht', 17, 2017, '', '978-3-426-52108-3'),
+(31, 'Der Insasse', 18, 2020, '', '9783426281536'),
+(32, 'Der Insasse', 19, 2020, '', '978-3-426-51944-8');
 
 -- --------------------------------------------------------
 
@@ -187,7 +194,13 @@ INSERT INTO `buchautor` (`ANR`, `IDBUCH`) VALUES
 (32, 24),
 (33, 24),
 (22, 25),
-(55, 26);
+(55, 26),
+(56, 27),
+(56, 28),
+(56, 29),
+(56, 30),
+(56, 31),
+(56, 32);
 
 -- --------------------------------------------------------
 
@@ -246,7 +259,13 @@ INSERT INTO `buchgebiet` (`SNR`, `IDBUCH`) VALUES
 (5, 24),
 (8, 24),
 (3, 25),
-(16, 26);
+(16, 26),
+(17, 27),
+(17, 28),
+(18, 29),
+(18, 30),
+(17, 31),
+(17, 32);
 
 -- --------------------------------------------------------
 
@@ -322,7 +341,7 @@ CREATE TABLE IF NOT EXISTS `sachgebiet` (
   `name` char(45) NOT NULL,
   PRIMARY KEY (`SNR`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Daten für Tabelle `sachgebiet`
@@ -344,7 +363,9 @@ INSERT INTO `sachgebiet` (`SNR`, `name`) VALUES
 (13, 'Mythologie'),
 (14, 'Glaube'),
 (15, 'Macht'),
-(16, 'Ã–konomie');
+(16, 'Ã–konomie'),
+(17, 'Psychothriller'),
+(18, 'Thriller');
 
 -- --------------------------------------------------------
 
@@ -357,7 +378,7 @@ CREATE TABLE IF NOT EXISTS `verlag` (
   `name` char(45) NOT NULL,
   PRIMARY KEY (`VNR`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Daten für Tabelle `verlag`
@@ -376,7 +397,12 @@ INSERT INTO `verlag` (`VNR`, `name`) VALUES
 (11, 'Nikol'),
 (12, 'Theiss'),
 (13, 'Piper'),
-(14, 'Anders Verlag');
+(14, 'Anders Verlag'),
+(15, 'Droemer Knaur Verlag'),
+(16, 'LÃ¼bbe'),
+(17, 'Knaur'),
+(18, 'Droemer HC'),
+(19, 'Knaur Taschenbuch');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
