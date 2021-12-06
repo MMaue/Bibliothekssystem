@@ -72,7 +72,7 @@ function create_options($result) {
 		}
 	}
 	else {
-		echo $con->error;
+		echo $con->error;  //könnte zu einem fehler führen, da hier $con nicht definiert ist
 	}
 }
 
