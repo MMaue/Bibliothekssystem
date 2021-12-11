@@ -7,12 +7,12 @@ function get_title_of_file($name) {
 	$part3 = explode(" - ", $part2[0]);
 	return $part3[1];
 
-	/* 
+	/*
 	$myfile = fopen("new_buch.php", "r") or die("Unable to open file!");
 	echo fread($myfile,filesize("new_buch.php"));
 	fclose($myfile);
-	*/ 
-	/* 
+	*/
+	/*
 	$fh = fopen('new_buch.php','r');
 	while ($line = fgets($fh)) {
 	  // <... Do your work with the line ...>
@@ -24,7 +24,7 @@ function get_title_of_file($name) {
 
 function create_linktable($path) {
 	//$n = 1;
-	$files = array_diff(scandir('./'), array('.', '..'));	
+	$files = array_diff(scandir('./'), array('.', '..'));
 	foreach($files as $file) {
 		//$end = pathinfo($file, PATHINFO_EXTENSIONS);
 		$end = explode(".", $file);
@@ -72,7 +72,7 @@ function create_options($result) {
 		}
 	}
 	else {
-		echo $con->error;  //könnte zu einem fehler führen, da hier $con nicht definiert ist
+		echo $con->error;  //! könnte zu einem fehler führen, da hier $con nicht definiert ist
 	}
 }
 
@@ -118,5 +118,4 @@ function create_table($result) {
 		echo "Fehler beim erstellen einer Tabelle -->".$con->error;
 	}
 }
-
 ?>
