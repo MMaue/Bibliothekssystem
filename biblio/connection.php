@@ -1,5 +1,10 @@
 <?php
-//tests
+// Normal
+//* Highlights
+//! Alert
+//? Queries
+//TODO: Do something
+//// commented out
 ?>
 <?php
 
