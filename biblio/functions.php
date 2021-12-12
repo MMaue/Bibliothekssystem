@@ -1,5 +1,42 @@
 <?php
 
+function check_login() {
+	if(isset($_SESSION['user_id'])) {
+		//* user is already logged in
+		return true;
+	}
+	else {
+		//* redirect to login
+		header('Location: http://'.$_SERVER['HTTP_HOST'].'/biblio/index.php');
+		exit();
+	}
+}
+
+function check_admin() {
+	$user_id = $_SESSION['user_id'];
+	//TODO: if there should be more than one admin
+	//TODO  a new admin table in the db is required
+	//TODO  this table only needs the id of the admin users
+	////$sql = "SELECT ID FROM admin WHERE ID = $user_id";
+	////$result = $con->query($sql);
+	////if($result->num_rows > 0){
+	if($user_id==1) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+function file_contains($file, $str_var) {
+	if(strpos(file_get_contents($file), $str_var) !== false) {
+        return true;
+    }
+	else {
+		return false;
+	}
+}
+
 function get_title_of_file($name) {
 	$file_content = file_get_contents($name);
 	$part1 = explode("<title>", $file_content);
@@ -23,6 +60,7 @@ function get_title_of_file($name) {
 }
 
 function create_linktable($path) {
+	//! $path is not used
 	//$n = 1;
 	$files = array_diff(scandir('./'), array('.', '..'));
 	foreach($files as $file) {
@@ -31,7 +69,14 @@ function create_linktable($path) {
 		if ($end[1] == "php") {
 			$name = get_title_of_file($file);
 			if ($name != "") {
-				echo "<td><a href='$file'>$name</a></td>";
+				if(check_admin()==false) {
+					if(file_contains($file, "check_admin()")==false) {
+						echo "<td><a href='$file'>$name</a></td>";
+					}
+				}
+				else {
+					echo "<td><a href='$file'>$name</a></td>";
+				}
 			}
 			//$n++;
 		}
@@ -39,6 +84,8 @@ function create_linktable($path) {
 }
 
 function create_header($path) {
+	$user_vorname = $_SESSION['user_vorname'];
+	echo "<a href=\"logout.php\">Logout</a>";
 	echo "<header role=\"banner\">
 	<div >
 	<table class=\"links\" border=\"0\"><tbody>
@@ -50,7 +97,7 @@ function create_header($path) {
 	</a></th>";
     create_linktable($path);
     echo "</tr>
-	</tbody></table>
+	</tbody></table>Hallo $user_vorname
 	</div>
 	</header>";
 }
