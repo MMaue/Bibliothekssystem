@@ -4,7 +4,7 @@ session_start();
 
 include("connection.php");
 include("functions.php");
-    
+
 ?>
 
 <!DOCTYPE html>
@@ -12,12 +12,11 @@ include("functions.php");
 	<meta charset="utf-8">
 	<link href='style.css' rel='stylesheet' type='text/css'>
 <head>
-	<title>Bibliothek - Leser hinzufügen</title>
+	<title>Bibliothek</title>
 </head>
 
 <body>
-<?php create_header('./'); ?>
-<h1>Leser hinzufügen</h1>
+<h1>Registrieren</h1>
 
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 	<div style="font-size: 20px;margin: 10px;color: white;">Nutzerdaten eintragen</div>
@@ -28,7 +27,8 @@ include("functions.php");
     <tr><td>Mail: </td><td><input id="text" type="text" name="mail" placeholder="maxm@gmail.com"></td></tr>
 	<tr><td>Passwort: </td><td><input id="text" type="password" name="password" placeholder="passwort"></td></tr>
     </tbody></table><br><br>
-	<input id="button" type="submit" value="In Datenbank Einfügen"><br>
+	<input id="button" type="submit" value="Registrieren"><br><br>
+    <a href="index.php">Schon registriert? --> Login</a>
 	<?php echo $error; ?><br>
 </form>
 
@@ -36,9 +36,9 @@ include("functions.php");
 <?php
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     /*
-    Der Passwort-Hash wird hier ohne Salt oder Pepper erstellt und gespeichert.
-    Diese Datenbank sollte nur für Bildungszwecke genutzt werden, da sonst mit Rainbowtables 
-    schlechte Passwörter einfach herausgefunden werden können.
+    ! Der Passwort-Hash wird hier ohne Salt oder Pepper erstellt und gespeichert.
+    ! Diese Datenbank sollte nur für Bildungszwecke genutzt werden, da sonst mit Rainbowtables 
+    ! schlechte Passwörter einfach herausgefunden werden können.
     */
     $query = $con->prepare("INSERT INTO leser (vorname, name, geburtsdatum, mail, pwhash) VALUES(?, ?, ?, ?, ?)");
     $password = $_POST["password"];
