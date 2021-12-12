@@ -4,7 +4,11 @@ session_start();
 
 include("connection.php");
 include("functions.php");
-    
+
+check_login();
+
+//TODO: replace LeserID with $_SESSION['user_id']
+
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +16,7 @@ include("functions.php");
 	<meta charset="utf-8">
 	<link href='style.css' rel='stylesheet' type='text/css'>
 <head>
-	<title>Bibliothek - Buch leihen</title>
+	<title>Bibliothek - Ausleihen</title>
 </head>
 
 <body>
@@ -20,13 +24,13 @@ include("functions.php");
 <h1>Buch leihen</h1>
 
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-	<div style="font-size: 20px;margin: 10px;color: white;">Nutzerdaten eintragen</div>
+	<div style="font-size: 20px;margin: 10px;color: white;">Buchdaten eintragen</div>
     <table class="invisible"><tbody>
 	<tr><td>BuchID: </td><td><input id="text" type="text" name="buchid"></td></tr>
     <tr><td>LeserID: </td><td><input id="text" type="text" name="leserid"></td></tr>
     <tr><td>Ausgeliehen am: </td><td><input type="date" name="von" value=<?php date_default_timezone_set('Europe/Paris')/*'1.0/no DST'*/ ; echo date("Y-m-d");?>></td></tr>
     </tbody></table><br><br>
-	<input id="button" type="submit" value="In Datenbank Einfügen"><br>
+	<input id="button" type="submit" value="Ausleihen"><br>
 </form>
 
 <table class="farbig"><tbody>

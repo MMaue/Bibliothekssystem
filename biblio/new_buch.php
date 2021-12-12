@@ -5,6 +5,12 @@ session_start();
 include("connection.php");
 include("functions.php");
 
+check_login();
+if(check_admin()==false) {
+	header('Location: http://'.$_SERVER['HTTP_HOST'].'/biblio/search.php');
+	exit();
+}
+
 ?>
 
 <!DOCTYPE html>

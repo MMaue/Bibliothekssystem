@@ -4,7 +4,11 @@ session_start();
 
 include("connection.php");
 include("functions.php");
-    
+
+check_login();
+
+//TODO: replace LeserID with $_SESSION['user_id']
+
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +16,7 @@ include("functions.php");
 	<meta charset="utf-8">
 	<link href='style.css' rel='stylesheet' type='text/css'>
 <head>
-	<title>Bibliothek - Buch zurückgeben</title>
+	<title>Bibliothek - Zurückgeben</title>
 </head>
 
 <body>
@@ -26,7 +30,7 @@ include("functions.php");
     <tr><td>LeserID: </td><td><input id="text" type="text" name="leserid"></td></tr>
     <tr><td>Zurückgeben am: </td><td><input type="date" name="bis" value=<?php date_default_timezone_set('Europe/Paris')/*'1.0/no DST'*/ ; echo date("Y-m-d");?>></td></tr>
     </tbody></table><br><br>
-	<input id="button" type="submit" value="In Datenbank Einfügen"><br>
+	<input id="button" type="submit" value="Zurückgeben"><br>
 </form>
 
 <table class="farbig"><tbody>
