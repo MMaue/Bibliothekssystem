@@ -59,6 +59,8 @@
 - https://www.youtube.com/watch?v=w8lU413qZPo
 - https://www.youtube.com/watch?v=Bx_BEA8VPq0
 - https://www.youtube.com/watch?v=s6Xi7x4G7yg
+- https://www.youtube.com/watch?v=OwmKRznMaO0&ab_channel=DaveHollingworth
+- https://www.youtube.com/watch?v=wODW8RLBPt0&ab_channel=WebTechKnowledge
 
 # sql
 - https://www.w3schools.com/sql/sql_exists.asp
@@ -75,3 +77,5 @@
 - https://www.youtube.com/watch?v=cjdiIKFYeXQ
 - https://www.youtube.com/watch?v=AryZSCeKU9Y
 - https://www.youtube.com/watch?v=lwgG_uIJYQM
+- https://stackoverflow.com/questions/9059026/php-check-if-file-contains-a-string
+- https://stackoverflow.com/questions/8028957/how-to-fix-headers-already-sent-error-in-php
