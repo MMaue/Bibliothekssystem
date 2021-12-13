@@ -5,6 +5,69 @@ session_start();
 include("connection.php");
 include("functions.php");
 
+if($_SERVER['REQUEST_METHOD'] == "POST") {
+    /*
+    ! Der Passwort-Hash wird hier ohne Salt oder Pepper erstellt und gespeichert.
+    ! Diese Datenbank sollte nur für Bildungszwecke genutzt werden, da sonst mit Rainbowtables 
+    ! schlechte Passwörter einfach herausgefunden werden können.
+    */
+    $query = $con->prepare("INSERT INTO leser (vorname, name, geburtsdatum, mail, pwhash) VALUES(?, ?, ?, ?, ?)");
+    $vorname = $_POST["vorname"];
+    $name = $_POST["name"];
+    $gebdate = $_POST["gebdate"];
+    $mail = $_POST["mail"];
+    $password = $_POST["password"];
+    //create the pwhash using sha256
+    $pwhash = hash('sha256', $password, false);
+    // 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+    $query->bind_param('sssss', $vorname, $name, $gebdate, $mail, $pwhash);
+    $query->execute();
+    $query->close();
+	
+    $query = $con->prepare("SELECT ID, mail, pwhash, vorname, name
+							FROM leser
+							WHERE mail=?
+							AND pwhash=?
+							LIMIT 1");
+    $query->bind_param('ss', $mail, $pwhash);
+    $query->execute();
+    $query->bind_result($user_id, $user_mail, $user_pwhash, $user_vorname, $user_name);
+    while ($query->fetch()) {
+		$_SESSION["user_id"] = $user_id;
+        $_SESSION["user_mail"] = $user_mail;
+        $_SESSION["user_pwhash"] = $user_pwhash;
+        $_SESSION["user_vorname"] = $user_vorname;
+        $_SESSION["user_name"] = $user_name;   
+    }
+	$query->close();
+
+    if($user_id == 0) {
+		echo "<h2>Mail bereits vergeben</h2>";
+	}
+	else {
+		header('Location: http://'.$_SERVER['HTTP_HOST'].'/biblio/search.php');
+  		exit();
+	}
+
+    /*
+    $command = escapeshellcmd("create_hash.py $password");
+	$pwhash = shell_exec($command);
+    */
+
+	/* python - create_hash.py
+	import sys
+	import hashlib
+	print(hashlib.sha256(bytes(sys.argv[1], encoding='utf-8')).hexdigest())
+	*/
+
+    /*
+    $hashed = password_hash($password, PASSWORD_DEFAULT);
+	// $2y$10$.vGA1O9wmRjrwAVXD98HNOgsNpDczlqm3Jq7KnEd1rVAGv3Fykk1a
+	if (password_verify($password, $hashed)) {
+	    echo "eingeloggt";
+	}
+    */
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,48 +91,9 @@ include("functions.php");
 	<tr><td>Passwort: </td><td><input id="text" type="password" name="password" placeholder="passwort"></td></tr>
     </tbody></table><br><br>
 	<input id="button" type="submit" value="Registrieren"><br><br>
-    <a href="index.php">Schon registriert? --> Login</a>
-	<?php echo $error; ?><br>
+    <a href="index.php">Schon registriert? → Login</a>
+	<br>
 </form>
 
-<table class="farbig"><tbody>
-<?php
-if($_SERVER['REQUEST_METHOD'] == "POST") {
-    /*
-    ! Der Passwort-Hash wird hier ohne Salt oder Pepper erstellt und gespeichert.
-    ! Diese Datenbank sollte nur für Bildungszwecke genutzt werden, da sonst mit Rainbowtables 
-    ! schlechte Passwörter einfach herausgefunden werden können.
-    */
-    $query = $con->prepare("INSERT INTO leser (vorname, name, geburtsdatum, mail, pwhash) VALUES(?, ?, ?, ?, ?)");
-    $password = $_POST["password"];
-    //create the pwhash using sha256
-    $pwhash = hash('sha256', $password, false);
-    // 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
-    $query->bind_param('sssss', $_POST["vorname"], $_POST["name"], $_POST["gebdate"], $_POST["mail"], $pwhash);
-    $query->execute();
-    $query->close();
-
-    // $command = escapeshellcmd("create_hash.py $password");
-	// $pwhash = shell_exec($command);
-	/* python - create_hash.py
-	import sys
-	import hashlib
-
-	print(hashlib.sha256(bytes(sys.argv[1], encoding='utf-8')).hexdigest())
-	*/
-
-    /*
-    $hashed = password_hash($password, PASSWORD_DEFAULT);
-	// $2y$10$.vGA1O9wmRjrwAVXD98HNOgsNpDczlqm3Jq7KnEd1rVAGv3Fykk1a
-	if (password_verify($password, $hashed)) {
-	    echo "eingeloggt";
-	}
-    */
-
-	$result = $con->query("SELECT * FROM leser ORDER BY id DESC LIMIT 1");
-	create_table($result);
-}
-?>
-</tbody></table>
 </body>
 </html>

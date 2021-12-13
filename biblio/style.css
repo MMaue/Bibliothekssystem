@@ -9,6 +9,11 @@ header {
     background-color: rgb(18, 18, 22);
 }
 
+h2 {
+    background-color: rgb(24, 24, 24);
+    color: rgb(230, 0, 0);
+}
+
 table.farbig {
     table-layout: auto;
     font-size: 0.9em;
