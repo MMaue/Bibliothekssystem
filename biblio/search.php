@@ -93,13 +93,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 			  AND buch.jahr LIKE '%$jahr%'
 			  AND verlag.name LIKE '%$verlag%'
 			  ORDER BY buch.titel ASC";
-
+	/*
 	$query_velag = "SELECT DISTINCT verlag.name
 					FROM verlag, buch
 					WHERE verlag.VNR = buch.VNR
 					AND buch.titel = ''
 					ORDER BY verlag.name ASC";
-
+	*/
 	mysql_connect("","root");
     mysql_select_db("bibliothekssystem");
 	$result = mysql_query($query);
@@ -167,7 +167,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 	//$query->bind_param('sssiss', $_POST["sachgebiet"], $_POST["autor"], $_POST["titel"], $_POST["ort"], $_POST["jahr"], $_POST["verlag"]);
     $query->execute();
 	$result = array();
-    $query->bind_result($res);
+    $query->bind_result($res, ...);
     while ($query->fetch()) {
 		array_push($result, $res);
     }
