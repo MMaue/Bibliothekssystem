@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 05. Dezember 2021 um 14:07
+-- Erstellungszeit: 13. Dezember 2021 um 22:42
 -- Server Version: 5.1.41
 -- PHP-Version: 5.3.1
 
@@ -116,7 +116,7 @@ INSERT INTO `buch` (`ID`, `titel`, `VNR`, `jahr`, `ort`, `isbn`) VALUES
 (3, 'Woyzeck', 3, 2013, 'Ditzingen', '978-3-15-016101-2'),
 (4, 'Entwicklung von außergewöhnlich aktiven, kooperativen Aluminium?Fluorid-basierten Lewis-Säure/Oniumsalz-Katalysatoren für die asymmetrische Carboxycyanierung von Aldehyden und Untersuchungen zu ihrer Anwendbarkeit in verwandten enantioselektiven Transformationen', 4, 2018, 'ortsnamehiereinfügen', '978-3843938433'),
 (5, 'Das groÃŸe Tafelwerk interaktiv 2.0 Formelsammlung fÃ¼r die Sekundarstufen I und II', 5, 2019, 'Wemding', '978-3-06-001611-2'),
-(6, 'Harry Potter and the Philosopher''s Stone', 6, 2005, NULL, '978-3551354013'),
+(6, 'Harry Potter und der Stein der Weisen', 6, 2005, 'England', '978-3551354013'),
 (14, 'Macbeth', 8, 1606, 'England', '978-0-521-68098-1'),
 (18, 'Physik Oberstufe', 5, 2008, 'Berlin', '978-3-06-013006-1'),
 (19, 'Metzler Physik', 9, 2007, 'Braunschweig', '978-3-507-10710-6'),
@@ -310,8 +310,10 @@ CREATE TABLE IF NOT EXISTS `leser` (
   `geburtsdatum` date NOT NULL,
   `mail` char(100) DEFAULT NULL,
   `pwhash` char(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mail` (`mail`),
+  UNIQUE KEY `mail_2` (`mail`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Daten für Tabelle `leser`
@@ -328,7 +330,9 @@ INSERT INTO `leser` (`id`, `vorname`, `name`, `geburtsdatum`, `mail`, `pwhash`) 
 (13, 'Third', 'Test', '2021-11-09', 'test@mail.com', 'd04b98f48e8f8bcc15c6ae5ac050801cd6dcfd428fb5f9e65c4e16e7807340fa'),
 (14, 'Peter', 'Fischer', '1968-04-13', 'peterfischer@gmx.de', '026ad9b14a7453b7488daa0c6acbc258b1506f52c441c7c465474c1a564394ff'),
 (15, 'Volker', 'Ackermann', '1968-12-02', 'volkerackermann@freenet.de', '6c035e5fd6cff34d541f92ad823ce32e86472ed2876f3f28e769d061709a6ab3'),
-(16, 'Geb', 'Urtsdatum', '2021-05-29', 'neuertest@gmail.com', '32e5983d40117146b2c94707115b611195e54bcddcccbe8391b70b7848271104');
+(16, 'Geb', 'Urtsdatum', '2021-05-29', 'neuertest@gmail.com', '32e5983d40117146b2c94707115b611195e54bcddcccbe8391b70b7848271104'),
+(17, 'Alice', 'im Wunderland', '2003-01-01', 'im-wunderland@gmail.com', '2ae014213a683f5010767723279e66315d5fb350b50362327e8ddd24d011197f'),
+(18, 'Niklas', 'Klein', '2003-04-24', 'nikkle@gmail.com', '078b64bca96426ae487f033e7a5b78925061971389ac660c1148479c4c73d790');
 
 -- --------------------------------------------------------
 
